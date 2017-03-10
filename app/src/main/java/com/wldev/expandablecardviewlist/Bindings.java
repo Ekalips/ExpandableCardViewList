@@ -132,7 +132,7 @@ public class Bindings {
             Drawable drawable = ContextCompat.getDrawable(imageView.getContext(),res);
             if (drawable instanceof Animatable){
                 imageView.setImageDrawable(drawable);
-                ((Animatable)drawable).start();
+//                ((Animatable)drawable).start();
             }
         }
     }
@@ -143,7 +143,7 @@ public class Bindings {
             Drawable drawable = ContextCompat.getDrawable(imageView.getContext(), res);
             if (drawable instanceof Animatable) {
                 imageView.setImageDrawable(drawable);
-                ((Animatable) drawable).start();
+//                ((Animatable) drawable).start();
             }
         }
     }
