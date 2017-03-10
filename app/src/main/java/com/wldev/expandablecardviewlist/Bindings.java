@@ -4,11 +4,16 @@ import android.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,6 +21,8 @@ import android.widget.TextView;
  */
 
 public class Bindings {
+    private static final String TAG = Bindings.class.getSimpleName();
+
     @BindingAdapter("android:layout_height")
     public static void setLayoutHeight(View view, float height) {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -95,6 +102,50 @@ public class Bindings {
         }
         else
             textView.setText(Html.fromHtml(text,null,new MyHTMLTagHandler(useChecks)));
+    }
+
+    @BindingAdapter({"animate","animateDrawable"})
+    public static void animate(ImageView imageView, boolean animate, Drawable drawable){
+        Log.d(TAG, "animate: ");
+        if (animate ){
+            if (drawable instanceof Animatable){
+                imageView.setImageDrawable(drawable);
+//                ((Animatable)drawable).start();
+            }
+        }
+    }
+
+    @BindingAdapter({"reverse","reverseDrawable"})
+    public static void reverseAnimation(ImageView imageView, boolean reverse, Drawable drawable){
+        Log.d(TAG, "reverseAnimation: ");
+        if (reverse) {
+            if (drawable instanceof Animatable) {
+                imageView.setImageDrawable(drawable);
+//                ((Animatable) drawable).start();
+            }
+        }
+    }
+
+    @BindingAdapter({"animate","animateDrawable"})
+    public static void animate(ImageView imageView, boolean animate, @DrawableRes int res){
+        if (animate ){
+            Drawable drawable = ContextCompat.getDrawable(imageView.getContext(),res);
+            if (drawable instanceof Animatable){
+                imageView.setImageDrawable(drawable);
+                ((Animatable)drawable).start();
+            }
+        }
+    }
+
+    @BindingAdapter({"reverse","reverseDrawable"})
+    public static void reverseAnimation(ImageView imageView, boolean reverse, @DrawableRes int res){
+        if (reverse) {
+            Drawable drawable = ContextCompat.getDrawable(imageView.getContext(), res);
+            if (drawable instanceof Animatable) {
+                imageView.setImageDrawable(drawable);
+                ((Animatable) drawable).start();
+            }
+        }
     }
 
 }

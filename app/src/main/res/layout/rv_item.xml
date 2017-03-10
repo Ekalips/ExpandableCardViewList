@@ -64,11 +64,16 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:text="@{item.title,default = Title}"/>
 
-                    <Switch
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
-                        android:checked="@{item.expanded}" />
+                        android:alpha="0.5"
+                        app:animateDrawable="@{@drawable/up_to_down_animation_drawable}"
+                        app:reverseDrawable="@{@drawable/down_to_up_animation_drawable}"
+                        app:animate="@{item.expanded}"
+                        app:reverse="@{!item.expanded}"
+                        android:src="@drawable/down_to_up_animation_drawable"/>
                 </LinearLayout>
 
                 <LinearLayout
