@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">ExpandableCardViewList</string>
+    <string name="subscribe">Subscribe</string>
+
+
+    <string name="full_plan"><![CDATA[<p>Project members enjoy access to the following features and benefits:
+</p>
+<ul>
+  <li>Access to entire 5,000+ course library</li>
+  <li>Learning paths</li>
+  <li>Skill measurement</li>
+  <li>Exercise files</li>
+  <li>Course learning checks</li>
+  <li>Completion certificates</li>
+  <li>Mobile apps</li>
+  <li>Offline viewing</li>
+</ul>]]></string>
+
+    <string name="first_plan"><![CDATA[<p>Project members enjoy access to the following features and benefits:
+</p>
+<ul>
+  <li>Access to entire 5,000+ course library</li>
+  <li>Learning paths</li>
+</ul>]]></string>
+
+    <string name="second_plan"><![CDATA[<p>Project members enjoy access to the following features and benefits:
+</p>
+<ul>
+  <li>Access to entire 5,000+ course library</li>
+  <li>Learning paths</li>
+  <li>Mobile apps</li>
+  <li>Offline viewing</li>
+</ul>]]></string>
+
+    <string name="third_plan"><![CDATA[<p>Project members enjoy access to the following features and benefits:
+</p>
+<ul>
+  <li>Access to entire 5,000+ course library</li>
+  <li>Learning paths</li>
+   <li>Course learning checks</li>
+  <li>Completion certificates</li>
+  <li>Mobile apps</li>
+  <li>Offline viewing</li>
+</ul>]]></string>
+
+
+</resources>
