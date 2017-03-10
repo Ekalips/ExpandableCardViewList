@@ -3,5 +3,5 @@
                  android:drawable="@drawable/ic_keyboard_arrow_down_black_24dp" >
   <target
       android:name="lel"
-      android:animation="@animator/path_morph_down_to_up" />
+      android:animation="@animator/path_morph_up_to_down" />
 </animated-vector>
