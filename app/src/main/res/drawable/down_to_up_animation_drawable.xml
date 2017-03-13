@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-                 android:drawable="@drawable/ic_keyboard_arrow_down_black_24dp" >
-  <target
-      android:name="lel"
-      android:animation="@animator/path_morph_up_to_down" />
-</animated-vector>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:drawable="@drawable/ic_arrow_down" >
+  <item android:drawable="@drawable/ic_arrow_down"
+      android:duration="0"/>
+
+</animation-list>

@@ -69,11 +69,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
                         android:alpha="0.5"
-                        app:animateDrawable="@{@drawable/up_to_down_animation_drawable}"
-                        app:reverseDrawable="@{@drawable/down_to_up_animation_drawable}"
-                        app:animate="@{item.expanded}"
-                        app:reverse="@{!item.expanded}"
-                        android:src="@drawable/down_to_up_animation_drawable"/>
+                        app:animation="@{@anim/scale_anim}"
+                        app:animate="@{!item.expanded}"
+                        app:reverseAnimation="@{@anim/scale_anim_reverse}"
+                        app:reverse="@{item.expanded}"
+                        android:src="@drawable/ic_arrow_down"/>
                 </LinearLayout>
 
                 <LinearLayout

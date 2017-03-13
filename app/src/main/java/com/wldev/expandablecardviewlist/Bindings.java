@@ -4,13 +4,13 @@ import android.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -91,6 +91,7 @@ public class Bindings {
 
     @BindingAdapter({"html","useChecks"})
     public static void setHTMLTextToTV(TextView textView, String text, boolean useChecks){
+        Log.d(TAG, "setHTMLTextToTV: ");
         if (text == null || text.length()==0) {
             textView.setText("");
             return;
@@ -102,27 +103,59 @@ public class Bindings {
             textView.setText(Html.fromHtml(text,null,new MyHTMLTagHandler(useChecks)));
     }
 
-    @BindingAdapter({"animate","animateDrawable"})
-    public static void animate(ImageView imageView, boolean animate, Drawable drawable){
-        Log.d(TAG, "animate: ");
+//    @BindingAdapter({"animate","animateDrawable"})
+//    public static void animate(ImageView imageView, boolean animate, Drawable drawable){
+//        Log.d(TAG, "animate: ");
+//        if (animate ){
+//            if (drawable instanceof Animatable){
+//                imageView.setImageDrawable(drawable);
+//                ((Animatable)drawable).start();
+//            }
+//        }
+//    }
+//
+//    @BindingAdapter({"reverse","reverseDrawable"})
+//    public static void reverseAnimation(ImageView imageView, boolean reverse, Drawable drawable){
+//        Log.d(TAG, "reverseAnimation: ");
+//        if (reverse) {
+//            if (drawable instanceof Animatable) {
+//                imageView.setImageDrawable(drawable);
+//                ((Animatable) drawable).start();
+//            }
+//        }
+//    }
+
+    @BindingAdapter({"animate","animateDrawable","animation"})
+    public static void animateWithRes(ImageView imageView, boolean animate, Drawable drawable, Animation animation){
         if (animate ){
-            if (drawable instanceof Animatable){
-                imageView.setImageDrawable(drawable);
-                ((Animatable)drawable).start();
-            }
+            imageView.setImageDrawable(drawable);
+            imageView.startAnimation(animation);
         }
     }
 
-    @BindingAdapter({"reverse","reverseDrawable"})
-    public static void reverseAnimation(ImageView imageView, boolean reverse, Drawable drawable){
-        Log.d(TAG, "reverseAnimation: ");
+    @BindingAdapter({"reverse","reverseDrawable","reverseAnimation"})
+    public static void reverseAnimationWithRes(ImageView imageView, boolean reverse, Drawable drawable, Animation animation){
         if (reverse) {
-            if (drawable instanceof Animatable) {
-                imageView.setImageDrawable(drawable);
-                ((Animatable) drawable).start();
-            }
+            imageView.setImageDrawable(drawable);
+            imageView.startAnimation(animation);
         }
     }
+
+    @BindingAdapter({"animate","animation"})
+    public static void animateWithRes(ImageView imageView, boolean animate, Animation animation){
+        if (animate ){
+            imageView.startAnimation(animation);
+        }
+    }
+
+    @BindingAdapter({"reverse","reverseAnimation"})
+    public static void reverseAnimationWithRes(ImageView imageView, boolean reverse, Animation animation){
+        if (reverse) {
+            imageView.startAnimation(animation);
+        }
+    }
+
+
 
 //    @BindingAdapter({"animate","animateDrawable"})
 //    public static void animate(ImageView imageView, boolean animate, @DrawableRes int res){

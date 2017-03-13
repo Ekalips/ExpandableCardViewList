@@ -33,6 +33,7 @@ public class MyHTMLTagHandler implements Html.TagHandler {
     @Override
     public void handleTag(boolean opening, String tag, Editable output,
                           XMLReader xmlReader) {
+
         SpannableStringBuilder builder = new SpannableStringBuilder();
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ContextCompat.getColor(MyApplication.get(), R.color.colorPrimary));
 
