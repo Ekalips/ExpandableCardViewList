@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wldev.expandablecardviewlist.extra.MyHTMLTagHandler;
+import com.wldev.expandablecardviewlist.extra.ViewAnimationUtils;
 
 /**
  * Created by wldev on 3/10/17.
@@ -123,6 +124,15 @@ public class Bindings {
                 animation.setDuration(0);
             }
             imageView.startAnimation(animation);
+        }
+    }
+
+    @BindingAdapter({"expand", "fastExpand"})
+    public static void expandView(View view, boolean expand, boolean fast) {
+        if (expand) {
+            ViewAnimationUtils.expand(view, null, fast);
+        } else if (view.getHeight() != 0) {
+            ViewAnimationUtils.collapse(view, null, fast);
         }
     }
 

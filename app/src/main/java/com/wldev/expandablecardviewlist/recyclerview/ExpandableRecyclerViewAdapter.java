@@ -34,9 +34,9 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<BindingV
         marginAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                for (ExpandStateItem m :
+                for (ExpandStateItem item :
                         states) {
-                    (m).setMargin(((Float) animation.getAnimatedValue()).intValue());
+                    item.setMargin((float) animation.getAnimatedValue());
                 }
             }
         });

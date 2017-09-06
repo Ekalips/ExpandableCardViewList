@@ -1,6 +1,5 @@
 package com.wldev.expandablecardviewlist.extra;
 
-import android.databinding.BindingAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -109,20 +108,5 @@ public class ViewAnimationUtils {
 
     interface AnimationEndCallback {
         void onAnimationEnded();
-    }
-
-    @BindingAdapter({"expand", "fastExpand"})
-    public static void expandView(View view, boolean expand, boolean fast) {
-        if (expand) {
-            expand(view, null, fast);
-        } else if (view.getHeight() != 0) {
-            collapse(view, null, fast);
-        }
-    }
-
-    @BindingAdapter({"collapse", "fastCollapse"})
-    public static void collapseView(View view, boolean collapse, boolean fast) {
-        if (collapse && view.getHeight() != 0)
-            collapse(view, null, fast);
     }
 }
