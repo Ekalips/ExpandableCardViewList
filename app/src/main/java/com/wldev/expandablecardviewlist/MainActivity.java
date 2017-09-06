@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.wldev.expandablecardviewlist.data.Item;
 import com.wldev.expandablecardviewlist.databinding.ActivityMainBinding;
+import com.wldev.expandablecardviewlist.recyclerview.ExpandableRecyclerViewAdapter;
 
 import java.util.ArrayList;
 

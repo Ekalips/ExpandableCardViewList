@@ -1,4 +1,4 @@
-package com.wldev.expandablecardviewlist;
+package com.wldev.expandablecardviewlist.bindings;
 
 import android.databinding.BindingAdapter;
 import android.graphics.Color;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.wldev.expandablecardviewlist.extra.MyHTMLTagHandler;
 
 /**
  * Created by wldev on 3/10/17.
@@ -103,80 +105,25 @@ public class Bindings {
             textView.setText(Html.fromHtml(text,null,new MyHTMLTagHandler(useChecks)));
     }
 
-//    @BindingAdapter({"animate","animateDrawable"})
-//    public static void animate(ImageView imageView, boolean animate, Drawable drawable){
-//        Log.d(TAG, "animate: ");
-//        if (animate ){
-//            if (drawable instanceof Animatable){
-//                imageView.setImageDrawable(drawable);
-//                ((Animatable)drawable).start();
-//            }
-//        }
-//    }
-//
-//    @BindingAdapter({"reverse","reverseDrawable"})
-//    public static void reverseAnimation(ImageView imageView, boolean reverse, Drawable drawable){
-//        Log.d(TAG, "reverseAnimation: ");
-//        if (reverse) {
-//            if (drawable instanceof Animatable) {
-//                imageView.setImageDrawable(drawable);
-//                ((Animatable) drawable).start();
-//            }
-//        }
-//    }
 
-    @BindingAdapter({"animate","animateDrawable","animation"})
-    public static void animateWithRes(ImageView imageView, boolean animate, Drawable drawable, Animation animation){
-        if (animate ){
-            imageView.setImageDrawable(drawable);
+    @BindingAdapter({"animate", "animation", "fastAnimation"})
+    public static void animateWithRes(ImageView imageView, boolean animate, Animation animation, boolean fastAnimation) {
+        if (animate && imageView.getAnimation() != null) {
+            if (fastAnimation) {
+                animation.setDuration(0);
+            }
             imageView.startAnimation(animation);
         }
     }
 
-    @BindingAdapter({"reverse","reverseDrawable","reverseAnimation"})
-    public static void reverseAnimationWithRes(ImageView imageView, boolean reverse, Drawable drawable, Animation animation){
+    @BindingAdapter({"reverse", "reverseAnimation", "fastReverse"})
+    public static void reverseAnimationWithRes(ImageView imageView, boolean reverse, Animation animation, boolean fastAnimation) {
         if (reverse) {
-            imageView.setImageDrawable(drawable);
+            if (fastAnimation) {
+                animation.setDuration(0);
+            }
             imageView.startAnimation(animation);
         }
     }
-
-    @BindingAdapter({"animate","animation"})
-    public static void animateWithRes(ImageView imageView, boolean animate, Animation animation){
-        if (animate ){
-            imageView.startAnimation(animation);
-        }
-    }
-
-    @BindingAdapter({"reverse","reverseAnimation"})
-    public static void reverseAnimationWithRes(ImageView imageView, boolean reverse, Animation animation){
-        if (reverse) {
-            imageView.startAnimation(animation);
-        }
-    }
-
-
-
-//    @BindingAdapter({"animate","animateDrawable"})
-//    public static void animate(ImageView imageView, boolean animate, @DrawableRes int res){
-//        if (animate ){
-//            Drawable drawable = ContextCompat.getDrawable(imageView.getContext(),res);
-//            if (drawable instanceof Animatable){
-//                imageView.setImageDrawable(drawable);
-//                ((Animatable)drawable).start();
-//            }
-//        }
-//    }
-//
-//    @BindingAdapter({"reverse","reverseDrawable"})
-//    public static void reverseAnimation(ImageView imageView, boolean reverse, @DrawableRes int res){
-//        if (reverse) {
-//            Drawable drawable = ContextCompat.getDrawable(imageView.getContext(), res);
-//            if (drawable instanceof Animatable) {
-//                imageView.setImageDrawable(drawable);
-//                ((Animatable) drawable).start();
-//            }
-//        }
-//    }
 
 }

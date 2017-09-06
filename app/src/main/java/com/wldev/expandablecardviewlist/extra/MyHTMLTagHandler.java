@@ -1,4 +1,4 @@
-package com.wldev.expandablecardviewlist;
+package com.wldev.expandablecardviewlist.extra;
 
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -6,6 +6,9 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+
+import com.wldev.expandablecardviewlist.MyApplication;
+import com.wldev.expandablecardviewlist.R;
 
 import org.xml.sax.XMLReader;
 

@@ -1,4 +1,4 @@
-package com.wldev.expandablecardviewlist;
+package com.wldev.expandablecardviewlist.extra;
 
 import android.view.View;
 

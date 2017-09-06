@@ -1,4 +1,4 @@
-package com.wldev.expandablecardviewlist;
+package com.wldev.expandablecardviewlist.extra;
 
 import android.databinding.BindingAdapter;
 import android.view.View;
@@ -12,19 +12,18 @@ import android.view.animation.Transformation;
 
 public class ViewAnimationUtils {
 
-    public static void expand(final View v, final AnimationEndCallback callback) {
+    public static void expand(final View v, final AnimationEndCallback callback, boolean fast) {
         v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final int targtetHeight = v.getMeasuredHeight();
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 v.getLayoutParams().height = interpolatedTime == 1
                         ? ViewGroup.LayoutParams.WRAP_CONTENT
-                        : (int)(targtetHeight * interpolatedTime);
+                        : (int) (targtetHeight * interpolatedTime);
                 v.requestLayout();
             }
 
@@ -34,7 +33,13 @@ public class ViewAnimationUtils {
             }
         };
 
-        a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        int duration = 0;
+
+        if (!fast) {
+            duration = (int) (targtetHeight / v.getContext().getResources().getDisplayMetrics().density);
+        }
+
+        a.setDuration(duration);
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -43,7 +48,7 @@ public class ViewAnimationUtils {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (callback!=null)
+                if (callback != null)
                     callback.onAnimationEnded();
             }
 
@@ -55,17 +60,16 @@ public class ViewAnimationUtils {
         v.startAnimation(a);
     }
 
-    public static void collapse(final View v, final AnimationEndCallback callback) {
+    public static void collapse(final View v, final AnimationEndCallback callback, boolean fast) {
         final int initialHeight = v.getMeasuredHeight();
 
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-                if(interpolatedTime == 1){
+                if (interpolatedTime == 1) {
                     v.setVisibility(View.GONE);
-                }else{
-                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                } else {
+                    v.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
                     v.requestLayout();
                 }
             }
@@ -76,7 +80,13 @@ public class ViewAnimationUtils {
             }
         };
 
-        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        int duration = 0;
+        if (!fast) {
+            duration = (int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density);
+        }
+
+        a.setDuration(duration);
+
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -85,7 +95,7 @@ public class ViewAnimationUtils {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (callback!=null)
+                if (callback != null)
                     callback.onAnimationEnded();
             }
 
@@ -97,21 +107,22 @@ public class ViewAnimationUtils {
         v.startAnimation(a);
     }
 
-    interface AnimationEndCallback{
+    interface AnimationEndCallback {
         void onAnimationEnded();
     }
 
-    @BindingAdapter("expand")
-    public static void expandView(View view, boolean expand)
-    {
-        if (expand)
-            expand(view,null);
+    @BindingAdapter({"expand", "fastExpand"})
+    public static void expandView(View view, boolean expand, boolean fast) {
+        if (expand) {
+            expand(view, null, fast);
+        } else if (view.getHeight() != 0) {
+            collapse(view, null, fast);
+        }
     }
 
-    @BindingAdapter("collapse")
-    public static void collapseView(View view, boolean collapse)
-    {
-        if (collapse)
-            collapse(view,null);
+    @BindingAdapter({"collapse", "fastCollapse"})
+    public static void collapseView(View view, boolean collapse, boolean fast) {
+        if (collapse && view.getHeight() != 0)
+            collapse(view, null, fast);
     }
 }
